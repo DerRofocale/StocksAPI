@@ -1,0 +1,144 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StocksAPI</name>
+    </assembly>
+    <members>
+        <member name="M:StocksAPI.Controllers.DeviceController.Get">
+            <summary>
+            Оборудование
+            </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.ManufacturerController.Get">
+            <summary>
+            Производители
+            </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.PlotController.Get">
+            <summary>
+            Участки
+            </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.PositionController.Get">
+            <summary>
+            Должности
+            </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.StockController.Get">
+            <summary>
+            Склады
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StocksAPI.Controllers.TypeOfPlotController.Get">
+            <summary>
+            Виды участков
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.Device">
+            <summary>
+            Оборудование
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Device.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Device.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Device.manufacturer">
+            <summary>
+            Производитель
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.Manufacturer">
+            <summary>
+            Производитель
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Manufacturer.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Manufacturer.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.Plot">
+            <summary>
+            Участок
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Plot.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Plot.typeOfPlot">
+            <summary>
+            Вид участка
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Plot.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.Position">
+            <summary>
+            Должность
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Position.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Position.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.Stock">
+            <summary>
+            Склад
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Stock.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Stock.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.Stock.plot">
+            <summary>
+            Участок
+            </summary>
+        </member>
+        <member name="T:StocksAPI.Models.TypeOfPlot">
+            <summary>
+            Вид участка
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.TypeOfPlot.id">
+            <summary>
+            Код
+            </summary>
+        </member>
+        <member name="P:StocksAPI.Models.TypeOfPlot.name">
+            <summary>
+            Наименование
+            </summary>
+        </member>
+    </members>
+</doc>
