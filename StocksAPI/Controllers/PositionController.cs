@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StocksAPI.Models;
+using StocksAPI.DataBase;
+using StocksAPI.DataBase.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,24 +10,96 @@ namespace StocksAPI.Controllers
     [ApiController]
     public class PositionController : ControllerBase
     {
-        private List<Position> positions = new List<Position>();
 
-        public PositionController()
+        private readonly StocksContext _db;
+        public PositionController(StocksContext db)
         {
-            positions.Add(new Position() { id = 1, name = "Главный технолог" });
-            positions.Add(new Position() { id = 2, name = "Старший специалист" });
-            positions.Add(new Position() { id = 3, name = "Водитель спец. техники" });
-            positions.Add(new Position() { id = 4, name = "Инженер-робототехник" });
-            positions.Add(new Position() { id = 5, name = "Старший начальник смены" });
+            this._db = db;
         }
 
         /// <summary>
-        /// Должности
+        /// Все должности
         /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(positions);
+            return Ok(_db.Positions.ToList());
+        }
+
+
+        /// <summary>
+        /// Должность по коду
+        /// </summary>
+        /// <param name="id">Код должности</param>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            try
+            {
+                if (_db.Positions.Where(x => x.Id == id).FirstOrDefault() != null)
+                {
+                    return Ok(_db.Positions.Where(x => x.Id == id).FirstOrDefault());
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        
+        /// <summary>
+        /// Добавление должности
+        /// </summary>
+        /// <param name="name">Наименование должности</param>
+        [HttpPost("Add/{name}")]
+        public async Task<IActionResult> Post(string name)
+        {
+            try
+            {
+                if (_db.Positions.Where(x => x.Name == name).FirstOrDefault() != null)
+                {
+                    return BadRequest();
+                }
+                _db.Positions.Add(new Position { Name = name });
+                await _db.SaveChangesAsync();
+                return Ok(_db.Positions.Where(x => x.Name == name).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        
+        /// <summary>
+        /// Удаление должности
+        /// </summary>
+        /// <param name="id">Код должности</param>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                if (_db.Positions.Where(x => x.Id == id).FirstOrDefault() != null)
+                {
+                    _db.Positions.Remove(_db.Positions.Where(x => x.Id == id).FirstOrDefault());
+                    await _db.SaveChangesAsync();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

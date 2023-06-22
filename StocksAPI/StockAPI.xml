@@ -6,138 +6,212 @@
     <members>
         <member name="M:StocksAPI.Controllers.DeviceController.Get">
             <summary>
-            Оборудование
+            Всё оборудование
             </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.DeviceController.Get(System.Int32)">
+            <summary>
+            Оборудование по коду
+            </summary>
+            <param name="id">Код оборудования</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.DeviceController.Post(System.String,System.Nullable{System.Int32})">
+            <summary>
+            Добавление оборудования
+            </summary>
+            <param name="name">Наименование оборудования</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.DeviceController.Delete(System.Int32)">
+            <summary>
+            Удаление оборудования
+            </summary>
+            <param name="id">Код оборудования</param>
         </member>
         <member name="M:StocksAPI.Controllers.ManufacturerController.Get">
             <summary>
-            Производители
+            Все производители
             </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.ManufacturerController.Get(System.Int32)">
+            <summary>
+            Производитель по коду
+            </summary>
+            <param name="id">Код производителя</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.ManufacturerController.Post(System.String)">
+            <summary>
+            Добавление производителя
+            </summary>
+            <param name="name">Наименование производителя</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.ManufacturerController.Delete(System.Int32)">
+            <summary>
+            Удаление производителя
+            </summary>
+            <param name="id">Код производителя</param>
         </member>
         <member name="M:StocksAPI.Controllers.PlotController.Get">
             <summary>
-            Участки
+            Все участки
             </summary>
+        </member>
+        <member name="M:StocksAPI.Controllers.PlotController.Get(System.String)">
+            <summary>
+            Участок по коду
+            </summary>
+            <param name="id">Код участка</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.PlotController.Post(StocksAPI.DataBase.Models.Plot)">
+            <summary>
+            Добавление участка
+            </summary>
+            <param name="name">Наименование участка</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.PlotController.Delete(System.String)">
+            <summary>
+            Удаление участка
+            </summary>
+            <param name="id">Код участка</param>
         </member>
         <member name="M:StocksAPI.Controllers.PositionController.Get">
             <summary>
-            Должности
+            Все должности
             </summary>
         </member>
-        <member name="M:StocksAPI.Controllers.StockController.Get">
+        <member name="M:StocksAPI.Controllers.PositionController.Get(System.Int32)">
             <summary>
-            Склады
+            Должность по коду
             </summary>
-            <returns></returns>
+            <param name="id">Код должности</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.PositionController.Post(System.String)">
+            <summary>
+            Добавление должности
+            </summary>
+            <param name="name">Наименование должности</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.PositionController.Delete(System.Int32)">
+            <summary>
+            Удаление должности
+            </summary>
+            <param name="id">Код должности</param>
         </member>
         <member name="M:StocksAPI.Controllers.TypeOfPlotController.Get">
             <summary>
             Виды участков
             </summary>
         </member>
-        <member name="T:StocksAPI.Models.Device">
+        <member name="M:StocksAPI.Controllers.TypeOfPlotController.Get(System.Int32)">
             <summary>
-            Оборудование
+            Вид участка по коду
             </summary>
+            <param name="id">Код вида участка</param>
         </member>
-        <member name="P:StocksAPI.Models.Device.id">
+        <member name="M:StocksAPI.Controllers.TypeOfPlotController.Post(System.String)">
+            <summary>
+            Добавление вида участка
+            </summary>
+            <param name="name">Наименование вида участка</param>
+        </member>
+        <member name="M:StocksAPI.Controllers.TypeOfPlotController.Delete(System.Int32)">
+            <summary>
+            Удаление вида участка
+            </summary>
+            <param name="id">Код вида участка</param>
+        </member>
+        <member name="P:StocksAPI.DataBase.Models.Device.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Device.name">
+        <member name="P:StocksAPI.DataBase.Models.Device.Name">
             <summary>
             Наименование
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Device.manufacturer">
+        <member name="P:StocksAPI.DataBase.Models.Device.ManufacturerId">
             <summary>
-            Производитель
+            Код производителя
             </summary>
         </member>
-        <member name="T:StocksAPI.Models.Manufacturer">
+        <member name="P:StocksAPI.DataBase.Models.Device.Manufacturer">
             <summary>
-            Производитель
+            Объект производителя
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Manufacturer.id">
+        <member name="P:StocksAPI.DataBase.Models.Log.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Manufacturer.name">
+        <member name="P:StocksAPI.DataBase.Models.Log.DateTime">
             <summary>
-            Наименование
+            Дата и время регистрации
             </summary>
         </member>
-        <member name="T:StocksAPI.Models.Plot">
+        <member name="P:StocksAPI.DataBase.Models.Log.Subject">
             <summary>
-            Участок
+            Субъект
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Plot.id">
+        <member name="P:StocksAPI.DataBase.Models.Manufacturer.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Plot.typeOfPlot">
-            <summary>
-            Вид участка
-            </summary>
-        </member>
-        <member name="P:StocksAPI.Models.Plot.name">
+        <member name="P:StocksAPI.DataBase.Models.Manufacturer.Name">
             <summary>
             Наименование
             </summary>
         </member>
-        <member name="T:StocksAPI.Models.Position">
+        <member name="P:StocksAPI.DataBase.Models.Manufacturer.Devices">
             <summary>
-            Должность
+            Связаные устройства
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Position.id">
+        <member name="P:StocksAPI.DataBase.Models.Plot.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Position.name">
+        <member name="P:StocksAPI.DataBase.Models.Plot.TypeOfPlotId">
+            <summary>
+            Код вида участка
+            </summary>
+        </member>
+        <member name="P:StocksAPI.DataBase.Models.Plot.Name">
             <summary>
             Наименование
             </summary>
         </member>
-        <member name="T:StocksAPI.Models.Stock">
+        <member name="P:StocksAPI.DataBase.Models.Plot.TypeOfPlot">
             <summary>
-            Склад
+            Объект вида участка
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Stock.id">
+        <member name="P:StocksAPI.DataBase.Models.Position.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Stock.name">
+        <member name="P:StocksAPI.DataBase.Models.Position.Name">
             <summary>
             Наименование
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.Stock.plot">
-            <summary>
-            Участок
-            </summary>
-        </member>
-        <member name="T:StocksAPI.Models.TypeOfPlot">
-            <summary>
-            Вид участка
-            </summary>
-        </member>
-        <member name="P:StocksAPI.Models.TypeOfPlot.id">
+        <member name="P:StocksAPI.DataBase.Models.TypesOfPlot.Id">
             <summary>
             Код
             </summary>
         </member>
-        <member name="P:StocksAPI.Models.TypeOfPlot.name">
+        <member name="P:StocksAPI.DataBase.Models.TypesOfPlot.Name">
             <summary>
             Наименование
+            </summary>
+        </member>
+        <member name="P:StocksAPI.DataBase.Models.TypesOfPlot.Plots">
+            <summary>
+            Связанные участки
             </summary>
         </member>
     </members>

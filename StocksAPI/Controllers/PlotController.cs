@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using StocksAPI.Models;
+using StocksAPI.DataBase;
+using StocksAPI.DataBase.Models;
+using static System.Reflection.Metadata.BlobBuilder;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,26 +11,94 @@ namespace StocksAPI.Controllers
     [ApiController]
     public class PlotController : ControllerBase
     {
-        private List<Plot> plots = new List<Plot>();
-
-        public PlotController()
+        private readonly StocksContext _db;
+        public PlotController(StocksContext db)
         {
-            plots.Add(new Plot() { id = "АИРП 01.00.000", typeOfPlot = "Основной", name = "Склад Пиломатериалов" });
-            plots.Add(new Plot() { id = "АИРП 02.00.000", typeOfPlot = "Основной", name = "Штабелирование" });
-            plots.Add(new Plot() { id = "АИРП 04.00.000", typeOfPlot = "Основной", name = "Сушка пиломатериалов" });
-            plots.Add(new Plot() { id = "АИРП 06.00.000", typeOfPlot = "Основной", name = "Распиловочная линия" });
-            plots.Add(new Plot() { id = "АИРП 10.00.000", typeOfPlot = "Основной", name = "Линия сборки поддонов (готовой продукции)" });
-            plots.Add(new Plot() { id = "АИРП 14.00.000", typeOfPlot = "Основной", name = "Склад готовой продукции" });
-            plots.Add(new Plot() { id = "АИРП 18.00.000", typeOfPlot = "Основной", name = "Расходные материалы" });
+            this._db = db;
         }
 
         /// <summary>
-        /// Участки
+        /// Все участки
         /// </summary>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(plots);
+            return Ok(_db.Plots.Select(x => new {id = x.Id, typeOfPlot = x.TypeOfPlot.Name, name = x.Name}).ToList());
+        }
+
+        /// <summary>
+        /// Участок по коду
+        /// </summary>
+        /// <param name="id">Код участка</param>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            try
+            {
+                if (_db.Plots.Where(x => x.Id == id).FirstOrDefault() != null)
+                {
+                    return Ok(_db.Plots.Where(x => x.Id == id).Select(x => new { id = x.Id, typeOfPlot = x.TypeOfPlot.Name, name = x.Name }).FirstOrDefault());
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Добавление участка
+        /// </summary>
+        /// <param name="name">Наименование участка</param>
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Plot value)
+        {
+            try
+            {
+                if (_db.Plots.Where(x => x.Name == value.Name).FirstOrDefault() != null)
+                {
+                    return BadRequest();
+                }
+                _db.Plots.Add(value);
+                await _db.SaveChangesAsync();
+                return Ok(_db.Plots.Where(x => x.Name == value.Name).Select(x => new { id = x.Id, typeOfPlot = x.TypeOfPlot.Name, name = x.Name }).FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
+        /// <summary>
+        /// Удаление участка
+        /// </summary>
+        /// <param name="id">Код участка</param>
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            try
+            {
+                if (_db.Plots.Where(x => x.Id == id).FirstOrDefault() != null)
+                {
+                    _db.Plots.Remove(_db.Plots.Where(x => x.Id == id).FirstOrDefault());
+                    await _db.SaveChangesAsync();
+                    return Ok();
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
