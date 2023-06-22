@@ -15,7 +15,7 @@
             </summary>
             <param name="id">Код оборудования</param>
         </member>
-        <member name="M:StocksAPI.Controllers.DeviceController.Post(System.String,System.Nullable{System.Int32})">
+        <member name="M:StocksAPI.Controllers.DeviceController.Post(System.String,System.Int32)">
             <summary>
             Добавление оборудования
             </summary>
